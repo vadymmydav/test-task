@@ -1,25 +1,22 @@
 import React from "react";
-import { Breadcrumb } from "rsuite";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../common/Routes";
+import styles from "./Navigation.module.scss";
 
-const NavLink = React.forwardRef((props, ref) => {
-  const { href, as, ...rest } = props;
+const Navigation = () => {
+  const navigate = useNavigate();
+
   return (
-    //<Link href={href} as={as}>
-    <a href={href} {...rest} />
-    //</Link>
+    <div className={styles.container}>
+      <span className={styles.shop} onClick={() => navigate(ROUTES.HOME)}>
+        Shop
+      </span>
+      <span> | </span>
+      <span className={styles.cart} onClick={() => navigate(ROUTES.CART)}>
+        Shopping Cart
+      </span>
+    </div>
   );
-});
-
-const Navigation = () => (
-  <Breadcrumb separator="   |    ">
-    <Breadcrumb.Item as={NavLink} href="/shop">
-      Shop
-    </Breadcrumb.Item>
-    <Breadcrumb.Item as={NavLink} href="/cart">
-      Shopping Cart
-    </Breadcrumb.Item>
-  </Breadcrumb>
-);
+};
 
 export default Navigation;

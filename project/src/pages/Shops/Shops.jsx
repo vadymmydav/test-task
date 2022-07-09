@@ -1,10 +1,12 @@
 import React from "react";
+
 import { Sidenav, Nav } from "rsuite";
 import styles from "./Shops.module.scss";
 
-const Shops = ({ shops }) => (
-  <div>
-    <Sidenav defaultOpenKeys={["3", "4"]}>
+const Shops = ({ shops, onSelectShop }) => (
+  <div className={styles.container}>
+   <p className={styles.title}> Shops: </p>
+    <Sidenav>
       <Sidenav.Body>
         <Nav activeKey="1">
           {shops &&
@@ -12,7 +14,7 @@ const Shops = ({ shops }) => (
               <Nav.Item
                 eventKey={shop}
                 key={shop}
-                onClick={() => console.log(shop)}
+                onClick={() => onSelectShop(shop)}
                 className={styles.shop}
               >
                 {shop}

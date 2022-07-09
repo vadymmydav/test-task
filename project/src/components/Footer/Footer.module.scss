@@ -1,0 +1,21 @@
+.container {
+  padding: 50px;
+  font-size: 18px;
+  display: flex;
+  justify-content: flex-end;
+  justify-content: flex-end;
+}
+
+.totalPriceBlock {
+  margin-right: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.price{
+    font-weight: bold;
+    margin-left: 5px;
+}
+.btn {
+  width: 150px;
+}
