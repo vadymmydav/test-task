@@ -8,3 +8,17 @@
     margin-top: 20px;
     text-align: right;
 }
+.imageBlock{
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+.cartBlock{
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  text-align: left;
+  text-transform: capitalize;
+  font-size: 16px;
+}
