@@ -1,15 +1,18 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Product from "../../components/Product/Product";
 import UserForm from "../../components/UserForm/UserForm";
 import { cartActions } from "../../redux/actions/cartActions";
+import Footer from '../../components/Footer/Footer'
 import styles from "./Cart.module.scss";
 
+
 const Cart = () => {
+  const [totalPrice, setTotalPrice] = useState(0);  
   const dispatch = useDispatch();
   const products = useSelector((state) => state.cart.products);
   const user = useSelector((state) => state.cart.user);
-  const totalPrice = useSelector((state) => state.cart.totalPrice);
+  //const totalPrice = useSelector((state) => state.cart.totalPrice);
   const cart = useSelector((state) => state.cart);
   const {
     changeQuantity,
@@ -26,6 +29,18 @@ const Cart = () => {
   const onUpdatePhone = (phone) => dispatch(setUserPhone(phone));
   const onUpdateAddress = (address) => dispatch(setUserAddress(address));
   const onChangeQuantity = (product) => dispatch(changeQuantity(product));
+
+  useEffect(()=> {
+    if(products && products.length > 0){
+      let totalAmount = 0
+      products.map(product => {
+        const amount = product.price * product.quantity;
+        totalAmount += amount
+      })
+      setTotalPrice(totalAmount)
+    }
+  }, 
+  [products])
 
 
   if (!products || products?.length === 0) {
@@ -55,6 +70,7 @@ const Cart = () => {
           ))}
         </div>
       </div>
+      <Footer price={totalPrice} />
     </div>
   );
 };

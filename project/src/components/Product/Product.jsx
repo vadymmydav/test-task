@@ -1,6 +1,12 @@
 import React from "react";
-import { Panel, InputNumber, Button } from "rsuite";
+import { Panel, InputNumber, Button, Tooltip, Whisper } from "rsuite";
 import styles from "./Product.module.scss";
+
+const tooltip = (
+  <Tooltip>
+    Item should be added to the Shopping Cart
+  </Tooltip>
+);
 
 const Product = ({ ifCart, product, onAddProduct, onChangeQuantity }) => {
   const { name, price, image, quantity } = product;
@@ -17,8 +23,8 @@ const Product = ({ ifCart, product, onAddProduct, onChangeQuantity }) => {
       {ifCart ? (
         <div className={styles.cartBlock}>
           <div>
-          <p>{name}</p>
-          <p>{price}</p>
+            <p>{name}</p>
+            <p>{price}</p>
           </div>
 
           <div style={{ width: 100 }}>
@@ -35,13 +41,15 @@ const Product = ({ ifCart, product, onAddProduct, onChangeQuantity }) => {
             <p>{name}</p>
             <p>{price}</p>
           </div>
-          <Button
-            appearance="primary"
-            className={styles.btn}
-            onClick={() => onAddProduct(product)}
-          >
-            Add to Cart
-          </Button>
+          <Whisper placement="bottom" controlId="control-id-hover" trigger="hover" speaker={tooltip}>
+            <Button
+              appearance="primary"
+              className={styles.btn}
+              onClick={() => onAddProduct(product)}
+            >
+              Add to Cart
+            </Button>
+          </Whisper>
         </Panel>
       )}
     </Panel>
